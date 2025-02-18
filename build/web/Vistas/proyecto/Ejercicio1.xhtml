@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProyectoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form onsubmit="#{proyectoController.cargarProyectos()}">
+                <p:toolbar style="margin-bottom: 10px; width: 69%; float: left">
+                    <f:facet name="left">
+                        <p:selectOneMenu id="unPais" value="#{proyectoController.pais}" onchange="submit()">
+                            <f:selectItems value="#{paisController.paises}" var="paises"/>                            
+                        </p:selectOneMenu>
+                    </f:facet>
+                    <f:facet name="right">
+                        <p:inputNumber id="unAnyo" value="#{proyectoController.anyo}" thousandSeparator="" 
+                                       decimalPlaces="0" onchange="submit()" />
+                    </f:facet>
+                </p:toolbar>
+            </h:form>
+            <h:form styleClass="jsfcrud_list_form">
+                <p:dataTable value="#{proyectoController.listaProyectos}"  var="proyecto" style="width: 70%; float: left; margin-bottom: 40">
+                    <p:column headerText="Cod." style="text-align: center" width="50">
+                        <h:outputText value="#{proyecto.codigo}"/>
+                    </p:column>
+                    <p:column headerText="Titulo">
+                        <h:outputText value="#{proyecto.titulo}"/>
+                    </p:column>                                                                                        
+                    <p:column headerText="Descripcion">
+                        <h:outputText value="#{proyecto.descripcion}"/>
+                    </p:column>
+                </p:dataTable>                
+                <p:dock position="bottom">
+                    <p:menuitem value="Crear" icon="/resources/iconos/save.ico" action="#{proyectoController.prepareCreate}" ajax="false"/>                        
+                    <p:menuitem value="Inicio" icon="/resources/iconos/home.ico" outcome="/index"/>                        
+                </p:dock>                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

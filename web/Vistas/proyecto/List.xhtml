@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProyectoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProyectoEmpty}" rendered="#{proyectoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{proyectoController.items.rowCount > 0}">
+                    <h:outputText value="#{proyectoController.pagination.pageFirstItem + 1}..#{proyectoController.pagination.pageLastItem + 1}/#{proyectoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{proyectoController.previous}" value="#{bundle.Previous} #{proyectoController.pagination.pageSize}" rendered="#{proyectoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{proyectoController.next}" value="#{bundle.Next} #{proyectoController.pagination.pageSize}" rendered="#{proyectoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{proyectoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_codProyecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codProyecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_ong}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ong}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_codigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_parte}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.parte}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_referencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.referencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_numProyecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numProyecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_instrumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.instrumento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_pais}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pais}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_localizacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.localizacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_anyo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.anyo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_titulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_socioLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.socioLocal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_regionSdb}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.regionSdb}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_responsableLegal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.responsableLegal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_opd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opd}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_opdContactoNombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opdContactoNombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_opdContactoMail}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opdContactoMail}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_opdContactoTelefono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opdContactoTelefono}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_responsableLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.responsableLocal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_costoTotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.costoTotal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_dineroSolicitado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dineroSolicitado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_aprobado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aprobado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_docConcesion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.docConcesion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_fechaConcesion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaConcesion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_dineroConcedido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dineroConcedido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_cd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cd}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_cdSedeLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cdSedeLocal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_ci}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ci}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_ciMs}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ciMs}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_ciSocioLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ciSocioLocal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_apoCdMs}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apoCdMs}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_duracionReal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.duracionReal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_fechaInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_fechaFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_fechaFinAmpliacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaFinAmpliacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_duracionTrasAmpliacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.duracionTrasAmpliacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_duracionIF}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.duracionIF}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_fechamaximaIF}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechamaximaIF}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_ingles}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ingles}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_target}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.target}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_tipoProyecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoProyecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_fechaCierre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaCierre}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_cerrado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cerrado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_sectorJYD}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sectorJYD}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_subsectorJYD}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subsectorJYD}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_sectorCAD}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sectorCAD}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_numBeneficiarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numBeneficiarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_numBeneficiariosMujeres}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numBeneficiariosMujeres}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_numBeneficiariosHombres}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numBeneficiariosHombres}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_descripcionBeneficiarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionBeneficiarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_numBeneficiarioInd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numBeneficiarioInd}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_numEntidadesBeneficiarias}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numEntidadesBeneficiarias}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_comentarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.comentarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_justificacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.justificacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_informeDonante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.informeDonante}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_categoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.categoria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_subcategoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subcategoria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_extinguido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.extinguido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_tecFor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tecFor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_tecSeg}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tecSeg}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_tipoEntidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoEntidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_sede}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sede}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_inspectoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inspectoria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_sectorMS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sectorMS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_subsectorMS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subsectorMS}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTitle_entidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.entidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{proyectoController.prepareView}" value="#{bundle.ListProyectoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{proyectoController.prepareEdit}" value="#{bundle.ListProyectoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{proyectoController.destroy}" value="#{bundle.ListProyectoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{proyectoController.prepareCreate}" value="#{bundle.ListProyectoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProyectoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

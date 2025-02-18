@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProyectoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">            
+            <h:form styleClass="jsfcrud_list_form">
+                <div class="grid">
+                    <div class="col-12 lg:col-6 xl:col-4">
+                        <div class="card" style="text-align: center">
+                            <p:outputLabel value="Dinero Concedido por Años" style="font-weight: bold; font-size: 20px"/>
+                            <p:pieChart model="#{proyectoController.pieModel}"/>
+                        </div>
+                    </div>
+                </div>               
+                <p:dock position="bottom">
+                    <p:menuitem value="Crear" icon="/resources/iconos/save.ico" action="#{proyectoController.prepareCreate}" ajax="false"/>                        
+                    <p:menuitem value="Inicio" icon="/resources/iconos/home.ico" outcome="/index"/>                        
+                </p:dock>                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

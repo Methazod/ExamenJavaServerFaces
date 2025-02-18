@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSubsectorespropioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSubsectorespropioLabel_codSubsector}" for="codSubsector" />
+                    <h:inputText id="codSubsector" value="#{subsectorespropioController.selected.codSubsector}" title="#{bundle.CreateSubsectorespropioTitle_codSubsector}" required="true" requiredMessage="#{bundle.CreateSubsectorespropioRequiredMessage_codSubsector}"/>
+                    <h:outputLabel value="#{bundle.CreateSubsectorespropioLabel_nomSubsector}" for="nomSubsector" />
+                    <h:inputText id="nomSubsector" value="#{subsectorespropioController.selected.nomSubsector}" title="#{bundle.CreateSubsectorespropioTitle_nomSubsector}" />
+                    <h:outputLabel value="#{bundle.CreateSubsectorespropioLabel_codSector}" for="codSector" />
+                    <h:inputText id="codSector" value="#{subsectorespropioController.selected.codSector}" title="#{bundle.CreateSubsectorespropioTitle_codSector}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{subsectorespropioController.create}" value="#{bundle.CreateSubsectorespropioSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{subsectorespropioController.prepareList}" value="#{bundle.CreateSubsectorespropioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSubsectorespropioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
